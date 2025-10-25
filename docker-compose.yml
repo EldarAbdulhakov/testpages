@@ -10,7 +10,6 @@ services:
     command: >
       -limit 2
       -conf /etc/selenoid/browsers.json
-      -container-startup-timeout 2m
       -timeout 5m
       -service-startup-timeout 1m
     shm_size: 2g
