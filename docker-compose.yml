@@ -29,7 +29,7 @@ services:
       - .:/app
       - ./maven_cache:/root/.m2
     environment:
-      - SELENOID_URL=http://172.17.0.1:4444/wd/hub
+      - SELENOID_URL=http://172.17.0.2:4444/wd/hub
     depends_on:
       selenoid:
         condition: service_healthy
