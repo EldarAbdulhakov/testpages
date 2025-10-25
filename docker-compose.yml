@@ -2,7 +2,6 @@ services:
   selenoid:
     image: aerokube/selenoid:latest-release
     container_name: selenoid2
-    network_mode: bridge
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./browsers.json:/etc/selenoid/browsers.json:ro
