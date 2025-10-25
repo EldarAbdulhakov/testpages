@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   selenoid:
     image: aerokube/selenoid:latest-release
