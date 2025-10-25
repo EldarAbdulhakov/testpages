@@ -18,16 +18,16 @@ public class OneTest {
         RemoteWebDriver driver;
 
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
+        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
-        options.addArguments("--disable-blink-features=AutomationControlled");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--disable-plugins");
-        options.addArguments("--disable-background-timer-throttling");
+//        options.addArguments("--disable-blink-features=AutomationControlled");
+//        options.addArguments("--disable-extensions");
+//        options.addArguments("--disable-plugins");
+//        options.addArguments("--disable-background-timer-throttling");
 
         String selenoidUrl = System.getenv("SELENOID_URL");
 

@@ -5,7 +5,13 @@
       "121.0": {
         "image": "selenoid/vnc_chrome:121.0",
         "port": "4444",
-        "tmpfs": {"/tmp": "size=2g"}
+        "tmpfs": {"/tmp": "size=2g"},
+        "env": [
+          "TZ=UTC",
+          "ENABLE_VNC=true",
+          "SCREEN_WIDTH=1920",
+          "SCREEN_HEIGHT=1080"
+        ]
       }
     }
   }
