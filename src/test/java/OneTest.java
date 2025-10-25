@@ -2,11 +2,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class OneTest {
 
@@ -33,14 +36,15 @@ public class OneTest {
         }
 
         driver = new RemoteWebDriver(new URL(selenoidUrl), options);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.get("https://www.saucedemo.com");
 
-        WebElement usernameBox = driver.findElement(By.xpath("//*[@id=\"user-name\"]"));
+        WebElement usernameBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"user-name\"]")));
         usernameBox.sendKeys("standard_user");
-        WebElement passwordBox = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+        WebElement passwordBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"password\"]")));
         passwordBox.sendKeys("secret_sauce");
-        WebElement button = driver.findElement(By.xpath("//*[@id=\"login-button\"]"));
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         button.click();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText(), "Sauce Labs Backpack");
 
