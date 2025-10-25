@@ -21,6 +21,11 @@ public class OneTest {
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-plugins");
+        options.addArguments("--disable-background-timer-throttling");
+
         String selenoidUrl = System.getenv("SELENOID_URL");
 
         if (selenoidUrl == null || selenoidUrl.isEmpty()) {
