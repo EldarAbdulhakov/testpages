@@ -3,7 +3,7 @@ version: '3.8'
 services:
   selenoid:
     image: aerokube/selenoid:latest-release
-    container_name: selenoid
+    container_name: selenoid2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./browsers.json:/etc/selenoid/browsers.json:ro
@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.tests
-    container_name: tests
+    container_name: tests2
     volumes:
       - .:/app
       - ./maven_cache:/root/.m2
