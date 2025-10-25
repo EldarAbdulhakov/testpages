@@ -12,6 +12,7 @@ services:
       -conf /etc/selenoid/browsers.json
       -timeout 10m
       -service-startup-timeout 2m
+      -container-network selenoid
     shm_size: 2g
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:4444/status || exit 1"]
@@ -19,6 +20,8 @@ services:
       retries: 20
       start_period: 15s
       timeout: 2s
+    networks:
+      - selenoid
 
   tests:
     build:
@@ -34,3 +37,9 @@ services:
       selenoid:
         condition: service_healthy
     command: ["mvn", "clean", "test"]
+    networks:
+      - selenoid
+
+networks:
+  selenoid:
+    driver: bridge
