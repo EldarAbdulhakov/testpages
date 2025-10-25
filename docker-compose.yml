@@ -41,4 +41,3 @@ services:
 
 networks:
  selenoid-net:
-  driver: bridge
