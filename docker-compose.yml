@@ -14,7 +14,7 @@ services:
       -service-startup-timeout 2m
     shm_size: 2g
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:4444/status || exit 1"]
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:4444/status || exit 1"]
       interval: 5s
       retries: 20
       start_period: 15s
