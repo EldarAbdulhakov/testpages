@@ -42,4 +42,4 @@ services:
 
 networks:
   selenoid_net:
-    driver: bridge
+    external: true
