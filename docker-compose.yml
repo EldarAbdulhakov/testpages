@@ -8,6 +8,7 @@ services:
     ports:
       - "4444:4444"
     command: >
+      -container-network ${COMPOSE_PROJECT_NAME}_default
       -limit 2
       -conf /etc/selenoid/browsers.json
       -timeout 10m
@@ -19,8 +20,6 @@ services:
       retries: 20
       start_period: 15s
       timeout: 2s
-    networks:
-      - selenoid-net
 
   tests:
     build:
@@ -36,8 +35,3 @@ services:
       selenoid:
         condition: service_healthy
     command: ["mvn", "clean", "test"]
-    networks:
-     - selenoid-net
-
-networks:
- selenoid-net:
