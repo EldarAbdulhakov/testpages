@@ -9,9 +9,10 @@ services:
       - "4444:4444"
     command: >
       -limit 2
-      -timeout 50m
-      -service-startup-timeout 20m
       -conf /etc/selenoid/browsers.json
+      -container-startup-timeout 2m
+      -timeout 5m
+      -service-startup-timeout 1m
     shm_size: 2g
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:4444/status || exit 1"]
