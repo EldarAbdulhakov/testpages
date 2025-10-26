@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      MAVEN_CACHE_DIR: ${{ runner.home }}/.m2/repository
+      MAVEN_CACHE_DIR: $HOME/.m2/repository
 
     steps:
       - name: Checkout repo
