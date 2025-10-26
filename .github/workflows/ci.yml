@@ -25,7 +25,7 @@ jobs:
         run: docker compose up --build --abort-on-container-exit
 
       - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
+        uses: simple-elf/allure-report-action@master
         if: always()
         with:
           gh_pages: gh-pages
