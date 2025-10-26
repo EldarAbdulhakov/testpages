@@ -7,17 +7,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      docker:
-        image: docker:24.0.5-dind
-        options: --privileged
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Docker Compose version
-        run: docker compose -v
+        run: docker compose version
 
       - name: Build and run tests
         run: docker compose up --build --abort-on-container-exit
