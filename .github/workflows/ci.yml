@@ -1,0 +1,39 @@
+name: CI5. CI + Git
+
+on:
+  push:
+    branches: ["ea/ci-yml"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:24.0.5-dind
+        options: --privileged
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Docker Compose version
+        run: docker-compose -v
+
+      - name: Build and run tests
+        run: docker-compose up --build --abort-on-container-exit
+
+      - name: Сontainer removal
+        if: always()
+        run: docker-compose down || true
+
+      - name: Collect Allure results
+        if: always()
+        run: |
+          mkdir -p allure-results
+          cp -r target/allure-results/* allure-results/ || echo "No results found"
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results
