@@ -1,6 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,12 +17,12 @@ public class OneTest {
     public void testSauceDemo() throws MalformedURLException {
         RemoteWebDriver driver;
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless=new");
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--disable-gpu");
+//        options.addArguments("--window-size=1920,1080");
 
 //        options.addArguments("--disable-blink-features=AutomationControlled");
 //        options.addArguments("--disable-extensions");
@@ -35,7 +35,7 @@ public class OneTest {
             throw new IllegalStateException("SELENOID_URL is not set!");
         }
 
-        driver = new RemoteWebDriver(new URL(selenoidUrl), options);
+        driver = new RemoteWebDriver(new URL(selenoidUrl), new DesiredCapabilities());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.get("https://www.saucedemo.com");
@@ -46,6 +46,7 @@ public class OneTest {
         passwordBox.sendKeys("secret_sauce");
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         button.click();
+
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText(), "Sauce Labs Backpack");
 
         driver.quit();
