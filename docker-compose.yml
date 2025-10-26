@@ -28,13 +28,10 @@ services:
     container_name: tests2
     volumes:
       - .:/app
-      - /home/runner/.m2/repository:/root/.m2/repository
+      - ${MAVEN_CACHE_DIR}:/root/.m2/repository
     environment:
       - SELENOID_URL=http://selenoid:4444/wd/hub
     depends_on:
       selenoid:
         condition: service_healthy
     command: ["mvn", "clean", "test"]
-
-volumes:
- maven_cache:
