@@ -28,7 +28,7 @@ services:
     container_name: tests2
     volumes:
       - .:/app
-      - ${HOME}/.m2/repository:/root/.m2/repository
+      - ${HOME}/.m2/repository:/root/.m2
     environment:
       - SELENOID_URL=http://selenoid:4444/wd/hub
     depends_on:
