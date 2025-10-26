@@ -24,10 +24,6 @@ jobs:
       - name: Build and run tests
         run: docker compose up --build --abort-on-container-exit
 
-      - name: Сontainer removal
-        if: always()
-        run: docker compose down || true
-
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7
         if: always()
@@ -43,3 +39,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+
+      - name: Сontainer removal
+        if: always()
+        run: docker compose down || true
