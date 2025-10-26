@@ -35,7 +35,11 @@ public class OneTest {
             throw new IllegalStateException("SELENOID_URL is not set!");
         }
 
-        driver = new RemoteWebDriver(new URL(selenoidUrl), new DesiredCapabilities());
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+        capabilities.setVersion("121.0");
+
+        driver = new RemoteWebDriver(new URL(selenoidUrl), capabilities);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.get("https://www.saucedemo.com");
