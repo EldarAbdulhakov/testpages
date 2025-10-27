@@ -35,11 +35,6 @@ jobs:
 
       - name: Build and run tests
         run: docker compose up --build --abort-on-container-exit
-        env:
-         MAVEN_CACHE_DIR: ${{ env.MAVEN_CACHE_DIR }}
-
-      - name: Save Maven cache from container
-        run: docker cp tests2:/root/.m2 ${{ env.MAVEN_CACHE_DIR }}
 
       - name: Get Allure history
         uses: actions/checkout@v4
