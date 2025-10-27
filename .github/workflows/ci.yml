@@ -21,6 +21,9 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
+      - name: Prepare Maven cache
+        run: mkdir -p ${{ env.MAVEN_CACHE_DIR }}
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -29,6 +32,14 @@ jobs:
 
       - name: Docker Compose version
         run: docker compose version
+
+      - name: Build and run tests
+        run: docker compose up --build --abort-on-container-exit
+        env:
+         MAVEN_CACHE_DIR: ${{ env.MAVEN_CACHE_DIR }}
+
+      - name: Save Maven cache from container
+        run: docker cp tests2:/root/.m2 ${{ env.MAVEN_CACHE_DIR }}
 
       - name: Build and run tests
         run: docker compose up --build --abort-on-container-exit
