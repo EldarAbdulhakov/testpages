@@ -35,4 +35,3 @@ services:
       selenoid:
         condition: service_healthy
     command: ["mvn", "clean", "test"]
-
